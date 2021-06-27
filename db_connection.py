@@ -1,3 +1,5 @@
+# This file contains means of connecting to databases in order to use them in other modules
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import registry
 
