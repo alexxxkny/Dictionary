@@ -1,4 +1,4 @@
-# This file contains Term table/class
+# This file contains Term table/class. The main class of the app.
 
 import db_connection as db
 from sqlalchemy import Column, String, Integer, ForeignKey
@@ -6,7 +6,8 @@ from sqlalchemy.orm import relationship
 
 
 class Term(db.Base):
-    """This class is a mapped term table"""
+    """Contain term with its translation and other characteristics."""
+
     __tablename__ = 'terms'
 
     id = Column(Integer, primary_key=True)
@@ -23,7 +24,4 @@ class Term(db.Base):
     definitions = relationship('Definition', back_populates='term')
 
     def __repr__(self):
-        examples = ''
-        if self.sentences is not None:
-            examples = '\n' + '\n'.join(map(str, self.sentences))
-        return f'#{self.id} {self.term} - {self.translation}' + examples
+        return f'Term(id={self.id}, term={self.term}, translation={self.translation})'

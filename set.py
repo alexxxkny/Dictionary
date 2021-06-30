@@ -1,9 +1,13 @@
+# Contain table/class set which represents named multiple of terms
+
 import db_connection as db
 from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import relationship
 
 
 class Set(db.Base):
+    """Contain information of set and including terms."""
+
     __tablename__ = 'sets'
 
     id = Column(Integer, primary_key=True)

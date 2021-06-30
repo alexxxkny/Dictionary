@@ -1,9 +1,14 @@
+# Contain definition table/class which represents explaining of a term
+# of particular class
+
 import db_connection as db
 from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
 
 class Definition(db.Base):
+    """Contain definition of a particular meaning of a term."""
+
     __tablename__ = 'definitions'
 
     id = Column(Integer, primary_key=True)
