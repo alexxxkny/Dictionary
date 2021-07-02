@@ -1,5 +1,6 @@
 # Starting point of the app.
 
+import db_api
 import db_connection as db
 from term import Term
 from sentence import Sentence
@@ -14,4 +15,6 @@ from cli import app
 if __name__ == '__main__':
     db.mapper_registry.metadata.create_all(db.engine)
     with Session(db.engine) as session:
-        app()
+        # db_api.full_default_db(session)
+        app(obj={'session': session})
+

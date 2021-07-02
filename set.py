@@ -15,5 +15,8 @@ class Set(db.Base):
 
     terms = relationship('Term', back_populates='set')
 
+    def __init__(self, name):
+        self.name = name.strip().lower()
+
     def __repr__(self):
         return f'Set(id={self.id}, name={self.name})'

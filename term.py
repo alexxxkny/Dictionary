@@ -24,10 +24,9 @@ class Term(db.Base):
     sentences = relationship('Sentence', back_populates='term')
     definitions = relationship('Definition', back_populates='term')
 
-    def __init__(self, term, translation, term_class=None):
+    def __init__(self, term, translation):
         self.term = term.strip().lower()
         self.translation = translation.strip().lower()
-        self.term_class = term_class
 
     def __repr__(self):
         return f'Term(id={self.id}, term={self.term}, translation={self.translation})'
