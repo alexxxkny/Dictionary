@@ -14,10 +14,12 @@ class Definition(db.Base):
     id = Column(Integer, primary_key=True)
     definition = Column(String)
     term_id = Column(Integer, ForeignKey('terms.id'))
-    class_id = Column(Integer, ForeignKey('term_classes.id'))
 
     term = relationship('Term', back_populates='definitions')
-    term_class = relationship('TermClass', back_populates='definitions')
+
+    def __init__(self, definition):
+        self.definition = definition
 
     def __repr__(self):
-        return f'Definition(id={self.id}, definition={self.definition})'
+        return f'Definition(id={self.id}, term_id={self.term_id},' \
+               f' definition={self.definition})'

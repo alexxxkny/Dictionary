@@ -50,10 +50,14 @@ def get_set(session, name):
         return None
 
 
-def add_term(session, term, translation, term_class, set):
+def add_term(session, term, translation, term_class, set, sentences, definitions):
     new_term = Term(term, translation)
     new_term.term_class = term_class
     new_term.set = set
+    definitions = [Definition(definition) for definition in definitions]
+    sentences = [Sentence(sentence) for sentence in sentences]
+    new_term.definitions = definitions
+    new_term.sentences = sentences
     session.add(new_term)
     session.commit()
 

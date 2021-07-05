@@ -14,7 +14,6 @@ class TermClass(db.Base):
     name = Column(String)
 
     terms = relationship('Term', back_populates='term_class')
-    definitions = relationship('Definition', back_populates='term_class')
 
     def __repr__(self):
         return f'TermClass(id={self.id}, name={self.name})'

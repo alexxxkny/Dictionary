@@ -35,10 +35,12 @@ def show(ctx, tables):
 @click.command()
 @click.argument('term')
 @click.argument('translation')
-@click.option('--class-name', '-tc')
-@click.option('--set-name', '-s')
+@click.option('--class-name', '-tc', prompt='Enter term class')
+@click.option('--set-name', '-s', prompt='Enter set name')
+@click.option('--add-definitions', '-def', is_flag=True)
+@click.option('--add-sentences', '-sen', is_flag=True)
 @click.pass_context
-def add(ctx, term, translation, class_name, set_name):
+def add(ctx, term, translation, class_name, set_name, add_definitions, add_sentences):
     """Subcommand of CLI. It's purpose is to get info about new term and add it into DB."""
     session = ctx.obj['session']
     term_class = db_api.get_term_class(session, class_name)
@@ -49,7 +51,23 @@ def add(ctx, term, translation, class_name, set_name):
     if set is None:
         print(f'There is not "{set_name}" set.')
         return
-    db_api.add_term(session, term, translation, term_class, set)
+    definitions = []
+    if add_definitions:
+        while True:
+            definition = input('Enter definition: ')
+            if definition == '':
+                break
+            else:
+                definitions.append(definition.strip().lower())
+    sentences = []
+    if add_sentences:
+        while True:
+            sentence = input('Enter sentence: ')
+            if sentence == '':
+                break
+            else:
+                sentences.append(sentence.strip())
+    db_api.add_term(session, term, translation, term_class, set, sentences, definitions)
 
 
 @click.command()

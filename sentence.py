@@ -16,5 +16,8 @@ class Sentence(db.Base):
 
     term = relationship('Term', back_populates='sentences')
 
+    def __init__(self, sentence):
+        self.sentence = sentence
+
     def __repr__(self):
         return f'Sentence(id={self.id}, term_id={self.term_id}, sentence={self.sentence})'
