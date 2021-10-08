@@ -1,3 +1,5 @@
 # Dictionary
-## Private project (not finished yet)
-Simple console app for learning english terms
+## Private project
+Simple console app for learning english terms.
+
+Used technologies: SQL Alchemy, Click (CLI), BeautifulSoup (Web Scraping)
